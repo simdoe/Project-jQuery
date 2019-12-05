@@ -9,11 +9,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 <body>
-    <div class="container">
+    <div class="container mt-5">
         <div class="row">
-            <div class="col-3"></div>
-            <div class="col-6" id="card"></div>
-            <div class="col-3"></div>
+            <div class="col-4"></div>
+            <div class="col-4">
+                <select id="choose_menu" class="form-control">
+                    <option value="" disabled selected>Choose Recipe</option>
+                    <option value="0">Nom Pom</option>
+                    <option value="1">Avocado</option>
+                    <option value="2">Chocolate</option>
+                </select>
+
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table table-borderless" id="result"></table>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <script src="js/project.js"></script>
