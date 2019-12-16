@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,33 +9,74 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
+
+<!-- just style  on the table-->
+<style>
+    tr,
+    td {
+        padding: 15px;
+    }
+</style>
+
 <body>
+
+    <!-- this container create for store select option of recipes -->
     <div class="container mt-5">
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
                 <select id="choose_menu" class="form-control">
                     <option value="" disabled selected>Choose Recipe</option>
-                    <option value="0">Nom Pom</option>
-                    <option value="1">Avocado</option>
-                    <option value="2">Chocolate</option>
                 </select>
 
             </div>
             <div class="col-4"></div>
         </div>
+
+        <!-- class container for card that store iconUrl and of recipes -->
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4" id="recipe"></div>
+                <div class="col-4"></div>
+            </div>
+        </div>
+
     </div>
+
+    <!-- class container for store add persons into input group-->
     <div class="container mt-5">
         <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <div class="card-body">
-                        <table class="table table-borderless" id="result"></table>
+            <div class="col-4"></div>
+            <div class="col-4">
+                <div class="group" id="nbGuests">
+                    <div class="input-group mb-3">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button" id="minusNumber">&#x2212;</button>
+                        </div>
+                        <input type="text" class="form-control text-center" value="0" disabled id="input">
+                        <div class="input-group-append">
+                            <button class="btn btn-success" type="button" id="plusNumber">&#x2b;</button>
+                        </div>
                     </div>
                 </div>
             </div>
+            <div class="col-4"></div>
         </div>
     </div>
+
+    <!-- class container for table that store ingredients -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6" id="ingredient">
+                <!-- nothing but I need call id  to be use in jquery file    -->
+            </div>
+            <div class="col-6" id="instructions"></div>
+        </div>
+    </div>
+
+
     <script src="js/project.js"></script>
 </body>
+
 </html>
