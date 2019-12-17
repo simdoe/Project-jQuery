@@ -39,28 +39,6 @@ var minusNumber = (minus) =>{
 
 // =============================================
 
-var updateEachIngredients = (update, guest) => {
-    
-    
-    let ingredients = "";
-    update.forEach(item => {
-        console.log(item.nbGuests);
-        let resultCalculator = item.quantity * parseInt(guest)  / item.nbGuests;
-        
-        ingredients += `
-            <tr>
-                <td><img src="${item.iconUrl}" class="img-fluid" width = "100"></td>   
-                <td>${item.resultCalculator}</td>   
-                <td>${item.unit[0]}</td>   
-                <td>${item.name}</td>   
-            </tr>
-    `;
-    $('#ingredient').html(ingredients);
-
-    })
-}
-
-
 // create function for get url
 function requestApi() {
     $.ajax({
@@ -91,6 +69,7 @@ function chooseRecipe(recipe){
 
 // for loop recipe for get name and img
 $('#nbGuests').hide();
+var oldNbGuest = 1;
 function getRecipe(recipe) {
     apiData.forEach(element => {
         // eachRecipe(element.name, element.iconUrl);
@@ -99,10 +78,34 @@ function getRecipe(recipe) {
             eachingredients(element.ingredients);
             eachinstructions(element.instructions);
             $('#input').val(element.nbGuests);  
+            oldNbGuest = $('#input').val();
         }
     })
    
 }
+
+
+// 
+
+var updateEachIngredients = (update, guest) => {
+    let ingredients = "";
+    update.forEach(item => {
+        console.log(item.nbGuests);
+        let resultCalculator = item.quantity * parseInt(guest)  / oldNbGuest;
+        
+        ingredients += `
+            <tr>
+                <td><img src="${item.iconUrl}" class="img-fluid" width = "100"></td>   
+                <td>${resultCalculator}</td>   
+                <td>${item.unit[0]}</td>   
+                <td>${item.name}</td>   
+            </tr>
+    `;
+    $('#ingredient').html(ingredients);
+
+    })
+}
+
 function updateRecipe(recipe,guest) {
     apiData.forEach(element => {
         // eachRecipe(element.name, element.iconUrl);
@@ -110,7 +113,7 @@ function updateRecipe(recipe,guest) {
             eachRecipe(element.name, element.iconUrl);
             updateEachIngredients(element.ingredients,guest);
             eachinstructions(element.instructions);
-            $('#input').val(element.nbGuests);  
+            $('#input').val(guest);  
         }
     })
    
@@ -125,6 +128,7 @@ var eachRecipe = (name, img) => {
 }
 
 // this function for loop eachingredients to html
+
 var eachingredients = (igd) => {
     let ingredients = "";
     igd.forEach(item => {
