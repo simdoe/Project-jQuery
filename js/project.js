@@ -5,6 +5,9 @@ $(document).ready(function() {
         var chooseOption = $('#choose_menu').val();
         getRecipe(chooseOption);
         $('#nbGuests').show();
+        $(' #ingredient').show();
+        $('#instructions').show();
+        $('#recipe').show();
     })
 
     // add number person of plus number
@@ -21,19 +24,26 @@ $(document).ready(function() {
     $('#minusNumber').on('click', () => {
         var minus = $('input').val();
         minusNumber(minus);
+        let newGuest = $('input').val();
+        var chooseOption = $('#choose_menu').val();
+        updateRecipe(chooseOption, newGuest);
     })
 });
 
 // Create arow function for plus number 
 var plusNumber = (plus) => {
     let convertToplusNumber = parseInt(plus) + 1;
-    $('input').val(convertToplusNumber);
+    if(convertToplusNumber <= 15){
+        $('input').val(convertToplusNumber);
+    }
 }
 
 // Create arow function for minusNumber
 var minusNumber = (minus) =>{
     let convertTominusNumber = parseInt(minus) -1;
-    $('input').val(convertTominusNumber);
+    if(convertTominusNumber >= 0){
+        $('input').val(convertTominusNumber);
+    }
 }
 // Create arow function result 
 
@@ -69,7 +79,11 @@ function chooseRecipe(recipe){
 
 // for loop recipe for get name and img
 $('#nbGuests').hide();
-var oldNbGuest = 1;
+$(' #ingredient').hide();
+$('#instructions').hide();
+$('#recipe').hide();
+
+var oldNbGuest;
 function getRecipe(recipe) {
     apiData.forEach(element => {
         // eachRecipe(element.name, element.iconUrl);
@@ -85,14 +99,13 @@ function getRecipe(recipe) {
 }
 
 
-// 
 
+// update on the EachIngredients 
 var updateEachIngredients = (update, guest) => {
     let ingredients = "";
     update.forEach(item => {
-        console.log(item.nbGuests);
+        // console.log(item.nbGuests);
         let resultCalculator = item.quantity * parseInt(guest)  / oldNbGuest;
-        
         ingredients += `
             <tr>
                 <td><img src="${item.iconUrl}" class="img-fluid" width = "100"></td>   
@@ -106,6 +119,7 @@ var updateEachIngredients = (update, guest) => {
     })
 }
 
+// update on the Recipe 
 function updateRecipe(recipe,guest) {
     apiData.forEach(element => {
         // eachRecipe(element.name, element.iconUrl);
@@ -116,19 +130,22 @@ function updateRecipe(recipe,guest) {
             $('#input').val(guest);  
         }
     })
-   
 }
+
 // output eachRecipe to html
 var eachRecipe = (name, img) => {
     let recipe = "";
     recipe+= `
-        ${name} &nbsp; &nbsp;<img src="${img}" width="100" class="img-fluid">
+        <div class="card shadow" style="border: 5px solid pink">
+            <div class="card-header"><img src="${img}" class="rounded-circle" width="15%"> &nbsp; &nbsp;${name}</div>
+            <div class="card-body"><img src="${img}" width="80%" class="img-thumbnail mx-auto d-block"> &nbsp; &nbsp;</div>
+        </div>   
     `;
     $('#recipe').html(recipe);
 }
 
-// this function for loop eachingredients to html
 
+// this function for loop eachingredients to html
 var eachingredients = (igd) => {
     let ingredients = "";
     igd.forEach(item => {
@@ -152,11 +169,9 @@ var eachinstructions = (step) => {
     // console.log(cutStep);
     for(let i = 1; i < cutStep.length; i++ ){
         instruction+= `
-            <tr>
-                <td> 
-                    <strong  class="text-primary">Step ${i} </strong>: <br>  &nbsp;   &nbsp;  &nbsp; ${cutStep[i]}
-                </td>
-            </tr>
+        <div class ="card shadow mt-4" style = "border: 5px solid pink; border-radius: 20px;">
+        <strong  class="text-primary">Step ${i} :</strong> <br>  &nbsp;   &nbsp;  &nbsp; ${cutStep[i]}
+    </div>
         `;
     }
     $('#instructions').html(instruction);

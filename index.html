@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Project</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 </head>
 
@@ -16,19 +17,31 @@
     td {
         padding: 15px;
     }
+
+    #image {
+        background: url(image/alkrdkutj7ov2l5bcljy.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed; 
+        background-size: 100% 100%;
+        
+    }
+
+    #ingredient {
+        background: rgb(233, 229, 229);
+        border: 4px solid rgb(250, 151, 220);
+    }
 </style>
 
-<body>
-
-    <!-- this container create for store select option of recipes -->
+<body id="image">
+   
     <div class="container mt-5">
         <div class="row">
             <div class="col-4"></div>
             <div class="col-4">
+                <h1 class="text-center" style="color: white">This is my menu</h1>
                 <select id="choose_menu" class="form-control">
                     <option value="" disabled selected>Choose Recipe</option>
                 </select>
-
             </div>
             <div class="col-4"></div>
         </div>
@@ -36,33 +49,31 @@
         <!-- class container for card that store iconUrl and of recipes -->
         <div class="container mt-5">
             <div class="row">
-                <div class="col-4"></div>
-                <div class="col-4" id="recipe"></div>
-                <div class="col-4"></div>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- class container for store add persons into input group-->
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <div class="group" id="nbGuests">
-                    <div class="input-group mb-3">
-                        <div class="input-group-append">
-                            <button class="btn btn-success" type="button" id="minusNumber">&#x2212;</button>
-                        </div>
-                        <input type="text" class="form-control text-center" value="0" disabled id="input">
-                        <div class="input-group-append">
-                            <button class="btn btn-success" type="button" id="plusNumber">&#x2b;</button>
+                <div class="col-5">
+                    <div class="card" id="recipe"></div>
+                </div>
+                <div class="col-3">
+                    <div class="card shadow" style="border: 5px solid pink" id="nbGuests">
+                        <div class="card-header"><h6 style="color: rgb(116, 111, 116)" class="text-center"><i class="material-icons text-danger">group</i>Add Person</h6></div>
+                        <div class="card-body">
+                            <div class="group">
+                                <div class="input-group mb-3">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-success" type="button" id="minusNumber">&#x2212;</button>
+                                    </div>
+                                    <input type="text" class="form-control text-center" value="0" disabled id="input">
+                                    <div class="input-group-append">
+                                        <button class="btn btn-success" type="button" id="plusNumber">&#x2b;</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div class="col-4"></div>
             </div>
-            <div class="col-4"></div>
         </div>
+
     </div>
 
     <!-- class container for table that store ingredients -->
@@ -71,11 +82,11 @@
             <div class="col-6" id="ingredient">
                 <!-- nothing but I need call id  to be use in jquery file    -->
             </div>
-            <div class="col-6" id="instructions"></div>
+            <div class="col-6" id="instructions">
+
+            </div>
         </div>
     </div>
-
-
     <script src="js/project.js"></script>
 </body>
 
