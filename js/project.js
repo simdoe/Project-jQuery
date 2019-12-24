@@ -1,13 +1,17 @@
 
+
+// Stating js file 
 $(document).ready(function() {
+
     requestApi();
     $('#choose_menu').on('change', () =>{
-        var chooseOption = $('#choose_menu').val();
+        var chooseOption = $('#choose_menu').val(); // get value from selection
         getRecipe(chooseOption);
         $('#nbGuests').show();
         $(' #ingredient').show();
         $('#instructions').show();
         $('#recipe').show();
+        $('#hideBorder').show();
     })
 
     // add number person of plus number
@@ -45,9 +49,7 @@ var minusNumber = (minus) =>{
         $('input').val(convertTominusNumber);
     }
 }
-// Create arow function result 
 
-// =============================================
 
 // create function for get url
 function requestApi() {
@@ -77,16 +79,19 @@ function chooseRecipe(recipe){
     $('#choose_menu').append(option);
 }
 
-// for loop recipe for get name and img
+// This place store all hide from html
 $('#nbGuests').hide();
 $(' #ingredient').hide();
 $('#instructions').hide();
 $('#recipe').hide();
+$('#hideBorder').hide();
 
+//=========================================
+// Create this varible store oldNbGuest
 var oldNbGuest;
+// Create function for getRecipe by id 
 function getRecipe(recipe) {
     apiData.forEach(element => {
-        // eachRecipe(element.name, element.iconUrl);
         if(element.id == recipe){
             eachRecipe(element.name, element.iconUrl);
             eachingredients(element.ingredients);
@@ -95,9 +100,66 @@ function getRecipe(recipe) {
             oldNbGuest = $('#input').val();
         }
     })
-   
 }
 
+// ========================================
+// update on the Recipe 
+function updateRecipe(recipe,guest) {
+    apiData.forEach(element => {
+        // eachRecipe(element.name, element.iconUrl);
+        if(element.id == recipe){
+            eachRecipe(element.name, element.iconUrl);
+            updateEachIngredients(element.ingredients,guest);
+            eachinstructions(element.instructions);
+            $('#input').val(guest);  
+        }
+    })
+}
+
+// output eachRecipe to html
+var eachRecipe = (name, img) => {
+    let recipe = "";
+    recipe+= `
+        <div class="card shadow" style="border: 5px solid pink">
+            <div class="card-header"><img src="${img}" class="rounded-circle" width="10%"> &nbsp; &nbsp;${name}</div>
+            <div class="card-body"><img src="${img}" class="img-thumbnail" width="40%"> &nbsp; &nbsp;</div>
+        </div>   
+    `;
+    $('#recipe').html(recipe);
+}
+
+// this function create for loop instruction and to html
+var eachinstructions = (step) => {
+    var instruction = "";
+    var cutStep = step.split('<step>');
+    // console.log(cutStep);
+    for(let i = 1; i < cutStep.length; i++ ){
+        instruction+= `
+        <div class ="mt-5" style="color: rgb(250, 151, 220)">
+        <strong  class="text-primary">Step ${i} :</strong> <br>  &nbsp;   &nbsp;  &nbsp; ${cutStep[i]}
+    </div>
+        `;
+    }
+    $('#instructions').html(instruction);
+}
+
+// ================================================
+// this function for loop eachingredients to html
+var eachingredients = (igd) => {
+    let ingredients = "";
+    igd.forEach(item => {
+        ingredients += `
+            <tr>
+                <td><img src="${item.iconUrl}" class="img-fluid" width = "100"></td>   
+                <td>${item.quantity}</td>   
+                <td>${item.unit[0]}</td>   
+                <td>${item.name}</td>   
+            </tr>
+    `;
+    $('#ingredient').html(ingredients);
+
+    })
+}
 
 
 // update on the EachIngredients 
@@ -119,60 +181,3 @@ var updateEachIngredients = (update, guest) => {
     })
 }
 
-// update on the Recipe 
-function updateRecipe(recipe,guest) {
-    apiData.forEach(element => {
-        // eachRecipe(element.name, element.iconUrl);
-        if(element.id == recipe){
-            eachRecipe(element.name, element.iconUrl);
-            updateEachIngredients(element.ingredients,guest);
-            eachinstructions(element.instructions);
-            $('#input').val(guest);  
-        }
-    })
-}
-
-// output eachRecipe to html
-var eachRecipe = (name, img) => {
-    let recipe = "";
-    recipe+= `
-        <div class="card shadow" style="border: 5px solid pink">
-            <div class="card-header"><img src="${img}" class="rounded-circle" width="15%"> &nbsp; &nbsp;${name}</div>
-            <div class="card-body"><img src="${img}" width="80%" class="img-thumbnail mx-auto d-block"> &nbsp; &nbsp;</div>
-        </div>   
-    `;
-    $('#recipe').html(recipe);
-}
-
-
-// this function for loop eachingredients to html
-var eachingredients = (igd) => {
-    let ingredients = "";
-    igd.forEach(item => {
-        ingredients += `
-            <tr>
-                <td><img src="${item.iconUrl}" class="img-fluid" width = "100"></td>   
-                <td>${item.quantity}</td>   
-                <td>${item.unit[0]}</td>   
-                <td>${item.name}</td>   
-            </tr>
-    `;
-    $('#ingredient').html(ingredients);
-
-    })
-}
-// this function create for loop instruction and to html
-var eachinstructions = (step) => {
-    // console.log(step);
-    var instruction = "";
-    var cutStep = step.split('<step>');
-    // console.log(cutStep);
-    for(let i = 1; i < cutStep.length; i++ ){
-        instruction+= `
-        <div class ="card shadow mt-4" style = "border: 5px solid pink; border-radius: 20px;">
-        <strong  class="text-primary">Step ${i} :</strong> <br>  &nbsp;   &nbsp;  &nbsp; ${cutStep[i]}
-    </div>
-        `;
-    }
-    $('#instructions').html(instruction);
-}

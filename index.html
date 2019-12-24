@@ -18,75 +18,146 @@
         padding: 15px;
     }
 
-    #image {
-        background: url(image/alkrdkutj7ov2l5bcljy.jpg);
-        background-repeat: no-repeat;
-        background-attachment: fixed; 
-        background-size: 100% 100%;
-        
+    body {
+
+        background-color: rgb(212, 230, 231);
     }
 
     #ingredient {
         background: rgb(233, 229, 229);
         border: 4px solid rgb(250, 151, 220);
     }
+
+    /* #instructions {
+        border: 4px solid rgb(247, 66, 186);
+    } */
 </style>
 
-<body id="image">
-   
+<body>
+
     <div class="container mt-5">
         <div class="row">
-            <div class="col-4"></div>
-            <div class="col-4">
-                <h1 class="text-center" style="color: white">This is my menu</h1>
+            <div class="col-3"></div>
+            <div class="col-6">
+                <marquee>
+                    <h1 class="text-center" style="color: rgb(252, 133, 192)">Welcome to your favorite food</h1>
+                </marquee>
                 <select id="choose_menu" class="form-control">
                     <option value="" disabled selected>Choose Recipe</option>
                 </select>
             </div>
-            <div class="col-4"></div>
+            <div class="col-3"></div>
         </div>
+    </div>
 
-        <!-- class container for card that store iconUrl and of recipes -->
-        <div class="container mt-5">
-            <div class="row">
-                <div class="col-5">
-                    <div class="card" id="recipe"></div>
-                </div>
-                <div class="col-3">
-                    <div class="card shadow" style="border: 5px solid pink" id="nbGuests">
-                        <div class="card-header"><h6 style="color: rgb(116, 111, 116)" class="text-center"><i class="material-icons text-danger">group</i>Add Person</h6></div>
-                        <div class="card-body">
-                            <div class="group">
-                                <div class="input-group mb-3">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-success" type="button" id="minusNumber">&#x2212;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="0" disabled id="input">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-success" type="button" id="plusNumber">&#x2b;</button>
-                                    </div>
+    <!-- form style images -->
+    <div class="container-fluid mt-5">
+        <div class="row">
+            <div class="col-3">
+                <img src="image/krlok.jpg" class="img-fluid">
+            </div>
+            <div class="col-3">
+                <img src="image/frech.jpg" class="img-fluid">
+            </div>
+            <div class="col-3">
+                <img src="image/fish1.jpg" class="img-fluid">
+            </div>
+            <div class="col-3">
+                <img src="image/ege.jpg" class="img-fluid">
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <hr style="border: 4px solid pink">
+
+    <!-- class container for card that store iconUrl and of recipes -->
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-6">
+                <div class="card" id="recipe"></div>
+            </div>
+            <div class="col-6">
+                <div class="card shadow" style="border: 5px solid pink" id="nbGuests">
+                    <div class="card-header">
+                        <h6 style="color: rgb(116, 111, 116)" class="text-center"><i
+                                class="material-icons text-danger">group</i>Add Person</h6>
+                    </div>
+                    <div class="card-body">
+                        <div class="group">
+                            <div class="input-group mb-3">
+                                <div class="input-group-append">
+                                    <button class="btn btn-success" type="button" id="minusNumber">&#x2212;</button>
+                                </div>
+                                <input type="text" class="form-control text-center" value="0" disabled id="input">
+                                <div class="input-group-append">
+                                    <button class="btn btn-success" type="button" id="plusNumber">&#x2b;</button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-4"></div>
             </div>
         </div>
-
     </div>
 
     <!-- class container for table that store ingredients -->
     <div class="container mt-5">
         <div class="row">
             <div class="col-6" id="ingredient">
+                <h2>Ingredient</h2>
                 <!-- nothing but I need call id  to be use in jquery file    -->
             </div>
-            <div class="col-6" id="instructions">
-
+            <div class="col-6" id="instructions" style="border: 4px solid rgb(250, 151, 220)">
             </div>
         </div>
     </div>
+    <br>
+    <hr style="border: 4px solid pink" id="hideBorder">
+
+    <!-- Information about me -->
+    <div class="container mt-5">
+        <h2 class="text-center">About Me</h2>
+        <div class="row">
+            <div class="col-3"></div>
+            <div class="col-3">
+                <img src="image/Picture10.jpg" class="img-fluid" width="500" height="100">
+            </div>
+            <div class="col-3">
+                <h5 style="color: hotpink">I'm Sim DOEM</h5>
+                <P>I'm a student second year of PNC school. I studying on the web programing and design on the interface
+                    website. This is my website that my school provide me that releted to food and drink.
+                    If you are interested​​ me you can contect by my phone number 088 28 53 064.
+                </P>
+            </div>
+            <div class="col-3"></div>
+        </div>
+    </div>
+    <br>
+    <hr style="border: 4px solid pink">
+    <footer class="bg-dark mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-4">
+                    <h5>Product</h5>
+                    <p>Food</p>
+                    <p>Drink</p>
+                </div>
+                <div class="col-4">
+                    <h5>Company</h5>
+                    <p>Menu</p>
+                    <p>Blog</p>
+                    <p>New</p>
+                </div>
+                <div class="col-4">
+                    <h5>Connect with me</h5>
+                    <p><img src="image/facebook1.jpg" class="rounded-circle" width="40"> Facebook</p>
+                    <p><img src="image/email.jpg" class="rounded-circle" width="30"> Gmail</p>
+                    <p><img src="image/phone.png" class="rounded-circle" width="40"> Phone</p>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script src="js/project.js"></script>
 </body>
 
